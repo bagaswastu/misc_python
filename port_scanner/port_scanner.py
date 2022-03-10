@@ -1,6 +1,5 @@
 import socket
 from queue import Queue
-import sys
 import threading
 
 target = ""
