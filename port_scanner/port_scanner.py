@@ -32,10 +32,11 @@ def run_scanner(threads):
     for thread in thread_list:
         thread.start()
 
-    thread.join()
-    print("\r", end="") # Clear line
-    print("List port that have been detected:\n>",open_ports)
-    quit()
+    for thread in thread_list:
+        thread.join()
+    
+    print("\r", end="")  # Clear line
+    print("List port that have been detected:\n>", open_ports)
 
 
 target = input("Input your target IP: ")
