@@ -1,4 +1,13 @@
 import sqlite3
+import logging
+
+# Logging configuration
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+handler = logging.FileHandler("book_shelf.log")
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 connection = sqlite3.connect(":memory:")
 
@@ -72,6 +81,7 @@ class Book:
         )
         connection.commit()
         cursor.close()
+        logger.info(f"Insert new book with id {cursor.lastrowid} into the database")
 
     @staticmethod
     def get(id: int):
@@ -79,6 +89,7 @@ class Book:
         cursor.execute(f"SELECT * FROM books WHERE id={id}")
         book = Book.__map(cursor.fetchone())
         cursor.close()
+        logger.info(f"Get book with id: {book.id}")
         return book
 
     @staticmethod
@@ -89,14 +100,15 @@ class Book:
 
         for data in cursor.fetchall():
             list_book.append(Book.__map(data))
+        logger.info(f"Get all book")
         return list_book
 
 
 create_table()
 seed()
 
+# Print all books
 list_book = Book.get_all()
-
 for book in list_book:
     print(book)
     print()
