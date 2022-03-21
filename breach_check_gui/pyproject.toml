@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "breach_check"
+version = "0.1.0"
+description = ""
+authors = ["Bagas Wastu <67826350+bagaswastu@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+PySide6 = "^6.2.3"
+cloudscraper = "^1.2.60"
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
